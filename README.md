@@ -23,6 +23,8 @@ npm start (this will start the react app) </br>
 # you can view the saved cities by clicking on the bookmark icon
 ![Screenshot 2024-03-16 013813](https://github.com/jithin-nihtij/weatherApplication/assets/118708878/adfa9b1e-6d75-4873-b00b-5cc02d896e1a)
 
+# this app is responsive
+
 
 
 
