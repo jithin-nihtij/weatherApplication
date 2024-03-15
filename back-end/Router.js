@@ -9,5 +9,5 @@ const router = express.Router()
 router.route('/createUser').post(createUser)
 router.route('/loginUser').post(loginUser)
 router.route('/saved').post(weatherCreate)
-router.route('/getSaved').get(getWeather)
+router.route('/getSaved/:userId').get(getWeather)
 module.exports = router

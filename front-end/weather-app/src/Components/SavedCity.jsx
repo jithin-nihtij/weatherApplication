@@ -3,13 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { FaWind } from "react-icons/fa";
 import './Saved.css'
+import { useParams } from "react-router-dom";
 
 function SavedCity() {
   const [cities, setCities] = useState([]);
   const [data, setData] = useState([]);
+  const {userId} = useParams()
 
   useEffect(() => {
-    axios.get("http://localhost:5000/getSaved").then((response) => {
+    axios.get(`http://localhost:5000/getSaved/${userId}`).then((response) => {
       const cityNames = response.data.map((item) => item.cityName);
       setCities(cityNames);
     });
@@ -40,10 +42,13 @@ function SavedCity() {
   }, [cities]);
 
   return (
-    <div className="savedParent">
-      {data.map((cityData) => (
+    <div className={cities.length === 0 ? "savedParent fullHeight" : "savedParent"}>
+    {cities.length === 0 ? (
+      <h2 className="text-center">No city saved yet</h2>
+    ) : (
+      data.map((cityData) => (
         <div key={cityData.cityName}>
-          <h1 className="text-center cityName" >{cityData.cityName}</h1>
+          <h1 className="text-center cityName">{cityData.cityName}</h1>
           <div className="savedWeather">
             {cityData.data.map((item, index) => (
               <Card className="savedchild" key={index}>
@@ -60,7 +65,12 @@ function SavedCity() {
                   <p className="text-center">
                     {new Date(item.dt * 1000).toLocaleDateString()}
                   </p>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
                     <img
                       src={`https://openweathermap.org/img/w/${item.weather[0].icon}.png`}
                       alt="Weather icon"
@@ -72,7 +82,9 @@ function SavedCity() {
                     />
                   </div>
 
-                  <p className="text-center">{item.weather[0].description}</p>
+                  <p className="text-center">
+                    {item.weather[0].description}
+                  </p>
 
                   <p className="text-center">
                     {item.wind.speed}m/s
@@ -83,8 +95,9 @@ function SavedCity() {
             ))}
           </div>
         </div>
-      ))}
-    </div>
+      ))
+    )}
+  </div>
   );
 }
 

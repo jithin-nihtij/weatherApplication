@@ -15,6 +15,10 @@ background: linear-gradient(180deg, rgba(77,45,45,1) 0%, rgba(146,146,146,1) 0%,
 
 }
 
+.fullHeight {
+    height: 100vh;
+  }
+
 .savedchild{
     backdrop-filter: blur(10px);
     background-color: rgba(151, 151, 151, 0.5);

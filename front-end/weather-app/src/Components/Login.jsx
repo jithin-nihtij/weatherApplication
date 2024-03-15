@@ -32,7 +32,7 @@ function Login() {
       }
     } catch (err) {
       console.log(err);
-      setmessage("wrong credentials,Please try again");
+      setmessage("Please try again");
     }
   };
 

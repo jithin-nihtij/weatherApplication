@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card} from "react-bootstrap";
 import "./WeatherPage.css";
 import { FaWind } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
@@ -96,7 +96,7 @@ function WeatherPage() {
        return;
     }
 
-    axios.post("http://localhost:5000/saved", { cityName: savedCity }).then((response) => {
+    axios.post("http://localhost:5000/saved", { cityName: savedCity,userId:userId }).then((response) => {
          console.log(response.data);
          alert("City saved successfully.");
        })
